@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'assets/img/pexels-bohlemedia-1884584.jpg' %}" class="d-block w-100" alt="roupas">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'assets/img/pexels-nietjuh-934063.jpg' %}" class="d-block w-100" alt="roupas">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'assets/img/pexels-solliefoto-298863.jpg' %}" class="d-block w-100" alt="roupas">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <div class="row">
+    {% include 'partials/_card.html' %}
+</div>
+<img src="{% static 'assets/img/narnia.jpg' %}" width="50px" height="50px" alt="narnia">
+{% endblock %}
