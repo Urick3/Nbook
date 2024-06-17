@@ -3,10 +3,10 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import User
 
 class LoginForm(forms.Form):
-    email = forms.EmailField(
+    username = forms.CharField(
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Email'
+            'placeholder': 'Username'
         })
     )
     password = forms.CharField(

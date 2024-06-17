@@ -4,10 +4,10 @@ from .views import *
 urlpatterns = [
     path('', index, name='index'),
     path('home', home, name='home'),
-    path('like/<int:clothing_id>/', like_clothing, name='like_clothing'),
-    path('comment/<int:clothing_id>/', comment_clothing, name='comment_clothing'),
-    path('add/', add_clothing, name='add_clothing'),
-    path('edit/<int:clothing_id>/', edit_clothing, name='edit_clothing'),
-    path('delete/<int:clothing_id>/', delete_clothing, name='delete_clothing'),
-    path('detail/<int:clothing_id>/', detail_clothing, name='detail_clothing'),
+    path('like/<int:book_id>/', like_book, name='like_book'),
+    path('comment/<int:book_id>/', comment_book, name='comment_book'),
+    path('add/', add_book, name='add_book'),
+    path('edit/<int:book_id>/', edit_book, name='edit_book'),
+    path('delete/<int:book_id>/', delete_book, name='delete_book'),
+    path('detail/<int:book_id>/', detail_book, name='detail_book'),
 ]

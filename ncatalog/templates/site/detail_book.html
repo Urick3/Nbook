@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block style %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
     .like-button {
         background-color: lightgray;
@@ -28,45 +27,28 @@
 </style>
 {% endblock %}
 {% block script %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const likeButton = document.getElementById('likeButton');
-        likeButton.addEventListener('click', function() {
-            this.classList.toggle('liked');
-            const icon = this.querySelector('i');
-            if (this.classList.contains('liked')) {
-                this.textContent = ' Descurtir';
-                this.prepend(icon);
-                icon.className = 'fa fa-thumbs-down';
-            } else {
-                this.textContent = ' Curtir';
-                this.prepend(icon);
-                icon.className = 'fa fa-thumbs-up';
-            }
-        });
-    });
-</script>
+
 {% endblock %}
 {% block content %}
 
-<div class="card">
-    <img class="card-img-top" src="{{ clothing.path.url }}" alt="{{ clothing.title }}">
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{ book.path.url }}" alt="{{ book.title }}">
     <div class="card-body">
         <h5 class="card-title">{{ clothing.title }}</h5>
         <p class="card-text">{{ clothing.description }}</p>
-        <a href="{% url 'like_clothing' clothing.id %}" id="likeButton" class="like-button {% if liked %}liked{% endif %}">
-            <i class="fa {% if liked %}fa-thumbs-down{% else %}fa-thumbs-up{% endif %}"></i>
+        <a href="{% url 'like_book' book.id %}" id="likeButton" class="like-button {% if liked %}liked{% endif %}">
+            
             {% if user.is_authenticated %}
                 {% if liked %}
-                    {{ clothing.total_likes }}
+                    <img src="{% static 'assets/img/like2.png' %}" height="30px" width="30px" alt="descurtir" srcset="" style="background-color: red;">
                 {% else %}
-                    {{ clothing.total_likes }}
+                    <img src="{% static 'assets/img/like.png' %}" height="30px" width="30px" alt="curtir" srcset="">
                 {% endif %}
             {% else %}
-                {{ clothing.total_likes }}
+                Curtir
             {% endif %}
         </a>
-        <form method="post" action="{% url 'comment_clothing' clothing.id %}">
+        <form method="post" action="{% url 'comment_book' book.id %}">
             {% csrf_token %}
             <div class="form-group">
                 <textarea class="form-control" name="content" rows="3" placeholder="Adicionar comentário"></textarea>

@@ -1,9 +1,9 @@
 from django import forms
-from .models import Clothing, Comment
+from .models import Book, Comment
 
-class ClothingForm(forms.ModelForm):
+class BookForm(forms.ModelForm):
     class Meta:
-        model = Clothing
+        model = Book
         fields = ['title', 'path', 'description']
         labels = {
             'title': "Título:",

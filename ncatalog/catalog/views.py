@@ -6,68 +6,69 @@ from django.contrib import messages
 
 @login_required
 def home(request):
-    clothes = Clothing.objects.all()
-    return render(request, 'catalog/home.html', {'clothes': clothes})
+    book = Book.objects.all()
+    return render(request, 'site/home.html', {'books': book})
 
 def index(request):
-    clothes = Clothing.objects.all()
-    return render(request, 'catalog/index.html', {'clothes': clothes})
+    book = Book.objects.all()
+    return render(request, 'site/index.html', {'books': book})
 
 @login_required
-def like_clothing(request, clothing_id):
-    clothing = get_object_or_404(Clothing, id=clothing_id)
-    like, created = Like.objects.get_or_create(user=request.user, clothing=clothing)
-    if not created:
-        like.delete()
-    return redirect('detail_clothing', clothing_id=clothing_id)
-
-@login_required
-def comment_clothing(request, clothing_id):
-    clothing = get_object_or_404(Clothing, id=clothing_id)
+def comment_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
     if request.method == 'POST':
         content = request.POST.get('content')
-        Comment.objects.create(user=request.user, clothing=clothing, content=content)
-    return redirect('detail_clothing', clothing_id=clothing_id)
+        Comment.objects.create(user=request.user, book=book, content=content)
+    return redirect('detail_book', book_id=book_id)
 
 @login_required
-def detail_clothing(request, clothing_id):
-    clothing = get_object_or_404(Clothing, id=clothing_id)
-    comments = Comment.objects.filter(clothing=clothing)
+def detail_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    comments = Comment.objects.filter(book=book)
     liked = False
     if request.user.is_authenticated:
-        liked = Like.objects.filter(user=request.user, clothing=clothing).exists()
-    return render(request, 'catalog/detail_clothing.html', {'clothing': clothing, 'comments': comments, 'liked': liked})
+        liked = Like.objects.filter(user=request.user, book=book).exists()
+    return render(request, 'site/detail_book.html', {'book': book, 'comments': comments, 'liked': liked})
 
 @login_required
-def add_clothing(request):
+def add_book(request):
     if request.method == 'POST':
-        form = ClothingForm(request.POST, request.FILES)
+        form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Roupa cadastrada com sucesso!')
             return redirect('home')
     else:
-        form = ClothingForm()
-    return render(request, 'catalog/add_clothing.html', {'form': form})
+        form = BookForm()
+    return render(request, 'site/add_book.html', {'form': form})
 
 @login_required
-def edit_clothing(request, clothing_id):
-    clothing = get_object_or_404(Clothing, id=clothing_id)
+def edit_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
     if request.method == 'POST':
-        form = ClothingForm(request.POST, request.FILES, instance=clothing)
+        form = BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
             form.save()
             messages.success(request, 'Roupa editada com sucesso!')
             return redirect('home')
     else:
-        form = ClothingForm(instance=clothing)
-    return render(request, 'catalog/edit_clothing.html', {'form': form})
+        form = BookForm(instance=book)
+    return render(request, 'site/edit_book.html', {'form': form})
 
 @login_required
-def delete_clothing(request, clothing_id):
-    clothing = get_object_or_404(Clothing, id=clothing_id)
+def delete_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
     if request.method == 'POST':
-        clothing.delete()
+        book.delete()
         messages.success(request, 'Roupa deletada com sucesso!')
         return redirect('home')
-    return render(request, 'catalog/delete_clothing.html', {'clothing': clothing})
+    return render(request, 'site/delete_book.html', {'book': book})
+
+@login_required
+def like_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    like, created = Like.objects.get_or_create(user=request.user, book=book)
+    if not created:
+        like.delete()
+    return redirect('detail_book', book_id=book_id)
+

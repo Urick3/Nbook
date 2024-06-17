@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+<title>Book</title>
+{% endblock %}
+
+
+{% block content %}
+{% include "partials/_alerts.html"%}
+    
+
+  <!--Header Inicio-->
+  {% include 'partials/_header.html' %}
+  <!--Header Fim-->
+  <!--Main Inicio-->  
+    <main>
+       
+      <section class="px-2 py-1">
+        <div class="promo">
+            <h2 class="d-flex justify-content-center robot py-4">Produtos</h2>
+        </div>
+        <div class=" text-center">
+          <div class="row" id="m">
+
+            {% include 'partials/_card.html' %}
+                
+          </div>      
+        </div>        
+      </section>
+                           
+      <div class="promo"><br></div>
+      
+    </main>
+  <!--Main Fim-->
+  <!--Footer Inicio-->
+  {% include 'partials/_footer.html' %}
+    
+  <!--Footer Fim-->  
+{% endblock %}

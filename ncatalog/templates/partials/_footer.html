@@ -1,5 +1,17 @@
-<footer class="footer mt-auto py-3 bg-light">
-    <div class="container text-center">
-        <span class="text-muted">&copy; 2024 Nbook. All rights reserved.</span>
+{% load static %}
+<footer class="py-4 bg-dark text-white-50">
+    <div class="d-flex justify-content-center" style="display: flex;flex-direction: column; flex-shrink: 0; flex-direction: 1 1 0;">
+        <div class="px-4 py-1">
+            <a href="#" class="icon brands fa-facebook-f"><span class="label"></span><img src="{% static 'assets/img/face.png' %}" alt="Facebook" width="40px" height="40px"></a>
+        </div>
+        <div class="px-4 py-1">
+            <a href="#" class="icon logo brands fa-instagram "><span class="label"></span>NBook</a>
+        </div>
+        <div class="px-4 py-1">
+            <a href="#" class="icon brands fa-instagram"><span class="label"></span><img src="{% static 'assets/img/icon5.png' %}" alt="Instagram" width="40px" height="40px"></a>
+        </div>
+    </div>    
+    <div class="d-block">
+        <h6 class="fw-light robot"> Copyright-2024, NBook&copy;, Inc. Todos os direitos reservados.</h6>
     </div>
 </footer>
